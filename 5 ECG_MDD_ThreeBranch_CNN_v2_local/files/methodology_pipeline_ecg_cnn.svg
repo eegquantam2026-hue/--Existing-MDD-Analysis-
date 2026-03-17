@@ -1,0 +1,164 @@
+<svg width="100%" viewBox="0 0 680 970" xmlns="http://www.w3.org/2000/svg">
+<defs>
+  <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+    <path d="M2 1L8 5L2 9" fill="none" stroke="#6b7280" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+  </marker>
+  <style>
+    text { font-family: Arial, Helvetica, sans-serif; }
+    .th  { font-size:14px; font-weight:600; }
+    .ts  { font-size:12px; font-weight:400; }
+    .arr { stroke:#6b7280; stroke-width:1.5; fill:none; }
+    .c-blue   rect { fill:#dbeafe; stroke:#3b82f6; }
+    .c-blue   text { fill:#1e3a8a; }
+    .c-teal   rect { fill:#d1fae5; stroke:#0d9488; }
+    .c-teal   text { fill:#064e3b; }
+    .c-purple rect { fill:#ede9fe; stroke:#7c3aed; }
+    .c-purple text { fill:#3b0764; }
+    .c-coral  rect { fill:#fee2e2; stroke:#dc2626; }
+    .c-coral  text { fill:#7f1d1d; }
+    .c-amber  rect { fill:#fef3c7; stroke:#d97706; }
+    .c-amber  text { fill:#78350f; }
+    .c-green  rect { fill:#dcfce7; stroke:#16a34a; }
+    .c-green  text { fill:#14532d; }
+    .c-gray   rect { fill:#f3f4f6; stroke:#6b7280; }
+    .c-gray   text { fill:#111827; }
+  </style>
+</defs>
+
+<!-- INPUT -->
+<g class="c-blue">
+  <rect x="190" y="24" width="300" height="44" rx="22" stroke-width="0.5"/>
+  <text class="th" x="340" y="46" text-anchor="middle" dominant-baseline="central">EDF files · MDD / healthy</text>
+</g>
+<line x1="340" y1="68" x2="340" y2="86" class="arr" marker-end="url(#arrow)"/>
+
+<!-- Preprocessing -->
+<g class="c-teal">
+  <rect x="90" y="88" width="500" height="56" rx="8" stroke-width="0.5"/>
+  <text class="th" x="340" y="108" text-anchor="middle" dominant-baseline="central">Preprocessing</text>
+  <text class="ts" x="340" y="128" text-anchor="middle" dominant-baseline="central">Bandpass 0.5–40 Hz · resample 256 Hz · z-score normalise</text>
+</g>
+<line x1="340" y1="144" x2="340" y2="162" class="arr" marker-end="url(#arrow)"/>
+
+<!-- Windowing -->
+<g class="c-teal">
+  <rect x="90" y="164" width="500" height="56" rx="8" stroke-width="0.5"/>
+  <text class="th" x="340" y="184" text-anchor="middle" dominant-baseline="central">Windowing</text>
+  <text class="ts" x="340" y="204" text-anchor="middle" dominant-baseline="central">20-second overlapping windows · 50% overlap · 7,158 segments</text>
+</g>
+
+<!-- fan-out -->
+<line x1="340" y1="220" x2="340" y2="240" class="arr"/>
+<path d="M 340 240 L 130 240 L 130 264" fill="none" stroke="#6b7280" stroke-width="1.5" marker-end="url(#arrow)"/>
+<path d="M 340 240 L 340 264" fill="none" stroke="#6b7280" stroke-width="1.5" marker-end="url(#arrow)"/>
+<path d="M 340 240 L 550 240 L 550 264" fill="none" stroke="#6b7280" stroke-width="1.5" marker-end="url(#arrow)"/>
+<text class="ts" x="340" y="254" text-anchor="middle" dominant-baseline="central" fill="#6b7280">Three parallel signal streams</text>
+
+<!-- Branch boxes -->
+<g class="c-purple">
+  <rect x="40" y="266" width="180" height="44" rx="8" stroke-width="0.5"/>
+  <text class="th" x="130" y="280" text-anchor="middle" dominant-baseline="central">Branch 1</text>
+  <text class="ts" x="130" y="298" text-anchor="middle" dominant-baseline="central">Raw EEG · 5,120 pts</text>
+</g>
+<g class="c-purple">
+  <rect x="250" y="266" width="180" height="44" rx="8" stroke-width="0.5"/>
+  <text class="th" x="340" y="280" text-anchor="middle" dominant-baseline="central">Branch 2</text>
+  <text class="ts" x="340" y="298" text-anchor="middle" dominant-baseline="central">R-R intervals · 32 pts</text>
+</g>
+<g class="c-purple">
+  <rect x="460" y="266" width="180" height="44" rx="8" stroke-width="0.5"/>
+  <text class="th" x="550" y="280" text-anchor="middle" dominant-baseline="central">Branch 3</text>
+  <text class="ts" x="550" y="298" text-anchor="middle" dominant-baseline="central">HVG degree · 256 pts</text>
+</g>
+
+<line x1="130" y1="310" x2="130" y2="330" class="arr" marker-end="url(#arrow)"/>
+<line x1="340" y1="310" x2="340" y2="330" class="arr" marker-end="url(#arrow)"/>
+<line x1="550" y1="310" x2="550" y2="330" class="arr" marker-end="url(#arrow)"/>
+
+<!-- CNN blocks -->
+<g class="c-coral">
+  <rect x="40" y="332" width="180" height="56" rx="8" stroke-width="0.5"/>
+  <text class="th" x="130" y="352" text-anchor="middle" dominant-baseline="central">1D CNN</text>
+  <text class="ts" x="130" y="372" text-anchor="middle" dominant-baseline="central">16 → 32 → 64 filters</text>
+</g>
+<g class="c-coral">
+  <rect x="250" y="332" width="180" height="56" rx="8" stroke-width="0.5"/>
+  <text class="th" x="340" y="352" text-anchor="middle" dominant-baseline="central">1D CNN</text>
+  <text class="ts" x="340" y="372" text-anchor="middle" dominant-baseline="central">16 → 32 → 64 filters</text>
+</g>
+<g class="c-coral">
+  <rect x="460" y="332" width="180" height="56" rx="8" stroke-width="0.5"/>
+  <text class="th" x="550" y="352" text-anchor="middle" dominant-baseline="central">1D CNN</text>
+  <text class="ts" x="550" y="372" text-anchor="middle" dominant-baseline="central">16 → 32 → 64 filters</text>
+</g>
+<text class="ts" x="340" y="406" text-anchor="middle" dominant-baseline="central" fill="#6b7280">Conv1D · BatchNorm · ReLU · MaxPool · Dropout(0.4) × 3 layers · kernel=7</text>
+
+<!-- fan-in to fusion -->
+<line x1="130" y1="388" x2="130" y2="420" class="arr"/>
+<line x1="340" y1="388" x2="340" y2="420" class="arr"/>
+<line x1="550" y1="388" x2="550" y2="420" class="arr"/>
+<path d="M 130 420 L 340 420" fill="none" stroke="#6b7280" stroke-width="1.5"/>
+<path d="M 550 420 L 340 420" fill="none" stroke="#6b7280" stroke-width="1.5"/>
+<line x1="340" y1="420" x2="340" y2="436" class="arr" marker-end="url(#arrow)"/>
+
+<!-- Feature Fusion -->
+<g class="c-amber">
+  <rect x="150" y="438" width="380" height="44" rx="8" stroke-width="0.5"/>
+  <text class="th" x="340" y="452" text-anchor="middle" dominant-baseline="central">Feature fusion</text>
+  <text class="ts" x="340" y="470" text-anchor="middle" dominant-baseline="central">Concatenate three CNN feature vectors (192-dim)</text>
+</g>
+<line x1="340" y1="482" x2="340" y2="500" class="arr" marker-end="url(#arrow)"/>
+
+<!-- FC -->
+<g class="c-amber">
+  <rect x="150" y="502" width="380" height="44" rx="8" stroke-width="0.5"/>
+  <text class="th" x="340" y="516" text-anchor="middle" dominant-baseline="central">Fully connected layer</text>
+  <text class="ts" x="340" y="534" text-anchor="middle" dominant-baseline="central">192 → 64 → 1 · Dropout(0.4) · Sigmoid output</text>
+</g>
+<line x1="340" y1="546" x2="340" y2="564" class="arr" marker-end="url(#arrow)"/>
+
+<!-- Decision threshold -->
+<g class="c-amber">
+  <rect x="200" y="566" width="280" height="44" rx="8" stroke-width="0.5"/>
+  <text class="th" x="340" y="580" text-anchor="middle" dominant-baseline="central">Decision threshold</text>
+  <text class="ts" x="340" y="598" text-anchor="middle" dominant-baseline="central">p &gt;= 0.70 → MDD · p &lt; 0.70 → HC</text>
+</g>
+<line x1="340" y1="610" x2="340" y2="628" class="arr" marker-end="url(#arrow)"/>
+
+<!-- Validation container -->
+<rect x="50" y="630" width="580" height="120" rx="12" fill="none" stroke="#aaa" stroke-width="1" stroke-dasharray="6 4"/>
+<text class="ts" x="340" y="648" text-anchor="middle" dominant-baseline="central" fill="#6b7280">Validation · subject-wise 5-fold CV</text>
+
+<g class="c-green">
+  <rect x="70" y="658" width="168" height="56" rx="8" stroke-width="0.5"/>
+  <text class="th" x="154" y="678" text-anchor="middle" dominant-baseline="central">Full recording</text>
+  <text class="ts" x="154" y="698" text-anchor="middle" dominant-baseline="central">7,158 segments</text>
+</g>
+<g class="c-green">
+  <rect x="256" y="658" width="168" height="56" rx="8" stroke-width="0.5"/>
+  <text class="th" x="340" y="678" text-anchor="middle" dominant-baseline="central">Thirds analysis</text>
+  <text class="ts" x="340" y="698" text-anchor="middle" dominant-baseline="central">start / middle / end</text>
+</g>
+<g class="c-green">
+  <rect x="442" y="658" width="168" height="56" rx="8" stroke-width="0.5"/>
+  <text class="th" x="526" y="678" text-anchor="middle" dominant-baseline="central">Ablation study</text>
+  <text class="ts" x="526" y="698" text-anchor="middle" dominant-baseline="central">branch contribution</text>
+</g>
+
+<line x1="340" y1="750" x2="340" y2="768" class="arr" marker-end="url(#arrow)"/>
+
+<!-- Evaluation -->
+<g class="c-gray">
+  <rect x="90" y="770" width="500" height="56" rx="8" stroke-width="0.5"/>
+  <text class="th" x="340" y="790" text-anchor="middle" dominant-baseline="central">Evaluation</text>
+  <text class="ts" x="340" y="810" text-anchor="middle" dominant-baseline="central">Accuracy · Sensitivity · Specificity · F1-Score · AUC-ROC</text>
+</g>
+<line x1="340" y1="826" x2="340" y2="844" class="arr" marker-end="url(#arrow)"/>
+
+<!-- Output -->
+<g class="c-blue">
+  <rect x="180" y="846" width="320" height="44" rx="22" stroke-width="0.5"/>
+  <text class="th" x="340" y="868" text-anchor="middle" dominant-baseline="central">Results saved to results/</text>
+</g>
+
+</svg>
